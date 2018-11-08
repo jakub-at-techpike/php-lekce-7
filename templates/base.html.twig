@@ -4,8 +4,45 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <style>
+            .strong { font-weight: bold }
+        </style>
     </head>
-    <body>
+    <body
+        {# Upravte pozadí stránky tak, aby pro controller ProductController bylo světle zelené: #}
+        {% if app.request.attributes.get('_route')|slice(0,7) == 'product' %}
+            style="background-color: #e7fbe0"
+        {% endif %}
+    >
+
+        {# 1. Vytvořte menu, které bude viditelné na všech stránkách: #}
+        <ul>
+            {# 2. V menu zvýrazněte aktuální stránku tučně: #}
+            <li class="{% if app.request.attributes.get('_route') == 'product_index' %}strong{% endif %}">
+                <a href="{{ path('product_index') }}">
+                    Products
+                </a>
+            </li>
+            <li class="{% if app.request.attributes.get('_route') == 'product_new' %}strong{% endif %}">
+                <a href="{{ path('product_new') }}">
+                    New Product
+                </a>
+            </li>
+            <li class="{% if app.request.attributes.get('_route') == 'purchase_order_index' %}strong{% endif %}">
+                <a href="{{ path('purchase_order_index') }}">
+                    Purchase Orders
+                </a>
+            </li>
+            <li class="{% if app.request.attributes.get('_route') == 'purchase_order_new' %}strong{% endif %}">
+                <a href="{{ path('purchase_order_new') }}">
+                    New Purchase Order
+                </a>
+            </li>
+        </ul>
+
+        {# 3. Přidejte pod menu nový blok, který vypíše počet nalezenych položek: #}
+        {% block total %}{% endblock %}
+
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

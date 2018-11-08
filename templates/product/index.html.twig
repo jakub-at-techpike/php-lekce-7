@@ -2,6 +2,9 @@
 
 {% block title %}Product index{% endblock %}
 
+{# 3. V šabloně pro výpis produktů a objednávek vložte do tohoto bloku větu: #}
+{% block total %}Počet nalezených položek: {{ products|length }}{% endblock %}
+
 {% block body %}
     <h1>Product index</h1>
 
