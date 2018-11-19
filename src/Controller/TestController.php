@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\PurchaseOrder;
+use App\Repository\ProgrammingLanguageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 /**
@@ -17,6 +18,16 @@ class TestController extends AbstractController
     {
         return $this->render('test/index.html.twig', [
             'controller_name' => 'TestController',
+        ]);
+    }
+    
+    /**
+     * @Route("/list", name="test_list")
+     */
+    public function list(ProgrammingLanguageRepository $programmingLanguageRepository)
+    {
+        return $this->render('test/list.html.twig', [
+            'programmingLanguages' => $programmingLanguageRepository->findAll(),
         ]);
     }
     

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of programming languages{% endblock %}
+
+{% block body %}
+    <h1>List of programming languages</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Programovací jazy</th>
+                <th>Umím</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for programmingLanguage in programmingLanguages %}
+            <tr>
+                <td>{{ programmingLanguage.testString }}</td>
+                <td>{{ programmingLanguage.testBoolean ? "Ano" : "Ne" }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
