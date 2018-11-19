@@ -32,6 +32,16 @@ class TestController extends AbstractController
     }
     
     /**
+     * @Route("/known", name="test_known")
+     */
+    public function known(ProgrammingLanguageRepository $programmingLanguageRepository)
+    {
+        return $this->render('test/known.html.twig', [
+            'programmingLanguages' => $programmingLanguageRepository->findKnown(),
+        ]);
+    }
+    
+    /**
      * @Route("/{id}", name="test_detail")
      */
     public function detail(PurchaseOrder $purchaseOrder)

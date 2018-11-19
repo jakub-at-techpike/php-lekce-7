@@ -18,6 +18,13 @@ class ProgrammingLanguageRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, ProgrammingLanguage::class);
     }
+    
+    public function findKnown()
+    {
+        return $this->findBy([
+            "testBoolean" => true
+        ]);
+    }
 
 //    /**
 //     * @return ProgrammingLanguage[] Returns an array of ProgrammingLanguage objects
