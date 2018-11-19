@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New books listing{% endblock %}
+
+{% block body %}
+    <h1>New books listing</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>PageCount</th>
+                <th>Author</th>
+                <th>ReleaseYear</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.pageCount }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.releaseYear }}</td>
+                <td>{{ book.price }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <a href="{{ path('book_index') }}">back to list</a>
+    
+{% endblock %}

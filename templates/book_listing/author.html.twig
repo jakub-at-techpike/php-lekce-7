@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book listing by century{% endblock %}
+
+{% block body %}
+    <h1>Book listing by century</h1>
+    
+    {% set author = '' %}
+    
+    {% for book in books %}
+    
+    {% if author != book.author %}
+        {% set author = book.author %}
+
+        {% if not loop.first %}
+            </tbody>
+        </table>
+        {% endif %}
+        
+        <h2>Autor: {{ book.author }}</h2>
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>PageCount</th>
+                    <th>Author</th>
+                    <th>ReleaseYear</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+
+    {% endif %}
+                <tr>
+                    <td>{{ book.pageCount }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.releaseYear }}</td>
+                    <td>{{ book.price }}</td>
+                </tr>
+    {% endfor %}
+            </tbody>
+        </table>
+        
+            <a href="{{ path('book_index') }}">back to list</a>
+{% endblock %}
